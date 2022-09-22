@@ -3,6 +3,10 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+
+import CalculationButtons from "./components/CalculationButtons";
+import InputField from "./components/InputField";
 
 /*
 const App = () => {
@@ -22,29 +26,62 @@ const App = () => {
   const [show, setShow] = useState(true);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: "25px",
-        height: "100vh",
-      }}
-    >
-      <PropExample name="Filipp"></PropExample>
-      <Button
-        variant="contained"
-        color="success"
-        onClick={() => setShow(!show)}
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: "25px",
+          height: "50vh",
+        }}
       >
-        Toggle popup {JSON.stringify(show)}
-      </Button>
+        <PropExample name="Filipp"></PropExample>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => setShow(!show)}
+        >
+          Toggle popup {JSON.stringify(show)}
+        </Button>
 
-      <MimicPopup show={show} setShow={setShow} />
-
-      <MimicPopup2 show={show} />
-    </Box>
+        <MimicPopup show={show} setShow={setShow} />
+        <MimicPopup2 show={show} />
+      </Box>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Grid
+          item
+          xs={6}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CalculationButtons />
+        </Grid>
+        <Grid
+          item
+          xs={6}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <InputField />
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
