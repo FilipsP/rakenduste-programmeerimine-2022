@@ -45,6 +45,13 @@ const Header = () => {
         >
           Contact
         </Button>
+        <Button
+          component={Link}
+          to="gallery"
+          variant="filled"
+        >
+          Gallery
+        </Button>
       </Box>
     </AppBar>
   )

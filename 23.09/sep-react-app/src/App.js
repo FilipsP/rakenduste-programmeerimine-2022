@@ -6,6 +6,7 @@ import Home from "./components/Home"
 import { Typography, Box, Button } from "@mui/material"
 import TableComponent from "./components/TableComponent"
 import Contact from "./components/Contact"
+import Gallery from "./pages/Gallery"
 
 const App = () => {
   return (
@@ -27,6 +28,10 @@ const App = () => {
         <Route
           path="/contact"
           element={<Contact />}
+        />
+        <Route
+          path="/gallery"
+          element={<Gallery />}
         />
         <Route
           path="*"
