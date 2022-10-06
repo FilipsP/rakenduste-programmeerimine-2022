@@ -7,6 +7,7 @@ require("dotenv").config()
 
 const cats = require("./routes/cats.routes")
 const dogs = require("./routes/dogs.routes")
+const TODO = require("./routes/TODO.routes")
 
 app.use(morgan("dev"))
 app.use(express.json())
@@ -20,6 +21,7 @@ mongoose
 
 app.use("/cats", cats)
 app.use("/dogs", dogs)
+app.use("/TODO", TODO)
 
 app.get("/", (req, res) => {
   res.send("Hello World!")
