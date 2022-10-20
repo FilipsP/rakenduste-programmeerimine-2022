@@ -1,4 +1,6 @@
-const User = require('../models/user.model');
+const User = require("../models/user.model")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 exports.signup = async (req, res) => {
   User.signup(req.body)
@@ -6,5 +8,23 @@ exports.signup = async (req, res) => {
     .catch((err) => res.send(`Failed ${err}`))
 }
 
-exports.login = async (req, res) => {}
-exports.protected = async (req, res) => {}
+exports.login = async (req, res) => {
+  const { name, password } = req.body
+  const user = await User.findOne({ name })
+  if (!user) return res.send("User not found")
+  const match = await bcrypt.compare(password, user.password)
+  if (!match) return res.send("Wrong password")
+  const token = jwt.sign(
+    { id: user._id, name: user.name, email: user.email },
+    process.env.TOKEN_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  )
+  // res.send("Logged in")
+  res.send(token)
+}
+
+exports.protected = async (req, res) => {
+  res.send(req.user)
+}

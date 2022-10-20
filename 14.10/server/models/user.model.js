@@ -19,11 +19,11 @@ userSchema.statics.signup = async ({ name, email, password }) => {
     const newUser = new User({ name, email, password: hashPassword })
 
     newUser.save((err) => {
-      if (err) return reject(err)
+      if(err) return reject(err)
       resolve(newUser)
+      })
     })
-  })
-}
+  }
 
 const User = model("User", userSchema)
 
