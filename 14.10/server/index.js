@@ -2,11 +2,8 @@ const express = require("express")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const app = express()
-const PORT = 8080
 require("dotenv").config()
 
-const cats = require("./routes/cats.routes")
-const dogs = require("./routes/dogs.routes")
 const auth = require("./routes/auth.routes")
 const TODO = require("./routes/TODO.routes")
 
@@ -20,8 +17,6 @@ mongoose
   .then(() => console.log("Database connection established"))
   .catch((e) => console.error(e))
 
-app.use("/cats", cats)
-app.use("/dogs", dogs)
 app.use("/auth", auth)
 app.use("/TODO", TODO)
 
@@ -42,6 +37,10 @@ app.get("/flights/:from-:to", (req, res) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`Server started at port ${PORT}`)
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server 123" })
+})
+
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`Server started at port ${process.env.SERVER_PORT}`)
 })

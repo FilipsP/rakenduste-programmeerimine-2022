@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material"
 import { useContext } from "react"
-import UserContext from "../App"
+import { UserContext } from "../App"
 
 const Header = () => {
-  //const [currentUser, setCurrentUser] = useContext(UserContext)
+  const [currentUser, setCurrentUser] = useContext(UserContext)
   return (
     <AppBar
       position="static"
@@ -16,7 +16,7 @@ const Header = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h6">Hi</Typography>
+        <Typography variant="h6">{`Hi ${currentUser}`}</Typography>
       </Toolbar>
       <Box>
         <Button
@@ -28,24 +28,24 @@ const Header = () => {
         </Button>
         <Button
           component={Link}
-          to="table"
+          to="todo"
           variant="filled"
         >
-          List
+          ToDo
         </Button>
         <Button
           component={Link}
-          to="contact"
+          to="login"
           variant="filled"
         >
-          Contact
+          Login
         </Button>
         <Button
           component={Link}
-          to="gallery"
+          to="register"
           variant="filled"
         >
-          Gallery
+          Sign Up
         </Button>
       </Box>
     </AppBar>
